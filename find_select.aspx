@@ -36,6 +36,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-1">Sort :</div>
+                <div class="col-md-2"><asp:TextBox ID="sort_TextBox" runat="server" Text="BookPrice">BookPrice</asp:TextBox></div>
+                <div class="col-md-1"><asp:DropDownList ID="sort_DropDownList" runat="server">
+                    <asp:ListItem>ASC</asp:ListItem>
+                    <asp:ListItem>DESC</asp:ListItem>
+                    </asp:DropDownList></div>
+            </div>
+            <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-9"><asp:ListBox ID="ListBox1" runat="server" Height="138px" Width="451px"></asp:ListBox></div>
             </div>

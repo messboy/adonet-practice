@@ -69,7 +69,7 @@ public partial class find_select : System.Web.UI.Page
         {
             try
             {
-                  drs = tb.Select(TextBox1.Text);
+                  drs = tb.Select(TextBox1.Text, sort_TextBox.Text + " " + sort_DropDownList.Text);
                   ListBox1.Items.Clear();
                   foreach (DataRow dr in drs)
                    {
@@ -78,7 +78,7 @@ public partial class find_select : System.Web.UI.Page
             }
             catch (System.Exception ex)
             {
-                Response.Write("找不到");
+                Response.Write("找不到" + ex.ToString());
             }
         }
     }

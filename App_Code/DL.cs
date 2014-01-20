@@ -18,22 +18,7 @@ public class DL
 		//
 	}
 
-	//建立存取test資料層
-	public DataSet gettestInfo()
-	{
-		SqlConnection conn =
-			new SqlConnection(WebConfigurationManager.ConnectionStrings["default"].ConnectionString);
-		
-		DataSet ds = new DataSet(); 
-		
-		using(conn)
-		{
-			string connstring = "select id,class,summary from test";
-			SqlDataAdapter adapter = new SqlDataAdapter(connstring, conn);
-			adapter.Fill(ds);
-		}	
-		return ds;
-	}
+
 
 	//查詢CBook資料
 	public DataTable CbookInfo(string bookID)
@@ -60,4 +45,25 @@ public class DL
 
 		return dt;
 	}
+
+    //連接
+    public DataSet bindgridview()
+    {
+        SqlConnection conn =
+            new SqlConnection(WebConfigurationManager.ConnectionStrings["CBooks"].ConnectionString);
+        DataSet ds = new DataSet();
+        SqlDataAdapter adapter = new SqlDataAdapter("select * from books", conn);
+        using (conn)
+        {
+            
+            adapter.Fill(ds);
+
+            //設定P.K
+            DataColumn[] dc = new DataColumn[1];
+            dc[0] = ds.Tables[0].Columns[0];
+            ds.Tables[0].PrimaryKey = dc;
+        }
+        return ds;
+
+    }
 }

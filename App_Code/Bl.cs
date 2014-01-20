@@ -20,15 +20,7 @@ public class Bl
 		//
 	}
 
-    //存取test資料庫
-	public DataSet testInfo()
-	{
-		DL bldr = new DL();
-		DataSet ds = bldr.gettestInfo();
-		return ds;
 
-	}
-
-    
+	
 
 }
