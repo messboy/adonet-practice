@@ -35,7 +35,7 @@
                     異動書籍編號 :
             <asp:TextBox ID="bookID" runat="server"></asp:TextBox>
             <asp:Button ID="add_Button" runat="server" Text="新增" OnClick="add_Button_Click" ValidationGroup="a" />
-         <asp:Button ID="update_Button" runat="server" Text="更新" ValidationGroup="a" />
+         <asp:Button ID="update_Button" runat="server" Text="更新" ValidationGroup="a" OnClick="update_Button_Click" />
             <div class="row">
                 <div class="col-md-1">booktitle</div>
                 <div class="col-md-3"><asp:TextBox ID="bookTitle" runat="server"></asp:TextBox><br/></div>
@@ -66,8 +66,9 @@
             <div class="row">
 
                 <div class="col-md-1">bookDate</div>
-                <div class="col-md-3"> <asp:TextBox ID="bookDate" runat="server"></asp:TextBox> &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="bookDate" Display="Dynamic" ErrorMessage="RequiredFieldValidator" ValidationGroup="a"></asp:RequiredFieldValidator>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="bookDate" ErrorMessage="CompareValidator" Operator="DataTypeCheck" Type="Date" ValidationGroup="a"></asp:CompareValidator>
+                <div class="col-md-3"> <asp:TextBox ID="bookDate" runat="server"></asp:TextBox> &nbsp;<br />&nbsp;<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="上船資料庫" />
+&nbsp;
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                 </div>
             </div>
         

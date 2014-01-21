@@ -51,6 +51,7 @@ public partial class CRUD_dataset : System.Web.UI.Page
         if (dr == null)
             return;
         drc.Remove(dr);
+        Response.Write(dr.RowState);
         setGVdatasource();     
     }
 
@@ -62,6 +63,7 @@ public partial class CRUD_dataset : System.Web.UI.Page
         if (dr == null)
             return;
         dr.Delete();
+        Response.Write(dr.RowState);
         Session["dr"] = dr;
         setGVdatasource();
     }
@@ -98,6 +100,7 @@ public partial class CRUD_dataset : System.Web.UI.Page
             if(t != null) 
             dr[t.ID] = t.Text;
         }
+
     }
     //新增按鈕
     protected void add_Button_Click(object sender, EventArgs e)
@@ -113,4 +116,26 @@ public partial class CRUD_dataset : System.Web.UI.Page
         setGVdatasource();
     }
 
+    //更新 只是更新dataset 尚未更新資料庫
+    protected void update_Button_Click(object sender, EventArgs e)
+    {
+        DataRow dr = ds.Tables[0].NewRow();
+        dr = ds.Tables[0].Rows.Find(bookID.Text);
+        if (dr == null) return;
+        setDataField(dr);
+        setGVdatasource();
+    }
+
+    //
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        DL DL = new DL();
+        string delcmd = "delete books where bookID=@bookID";
+        string updcmd = "update books set bookTitle=@bookTitle,bookISBN=@bookISBN,bookPirce=@bookPrice," + 
+        "bookPublisher=@bookPublisher,bookAuthor=@bookAuthor,bookCoverUrl=@bookCoverUrl,bookDate=@bookDate where bookID=@bookID";
+        string insertcmd = "insert into books values(@bookID,@bookTitle,@bookISBN,@bookPrice,@bookPublisher,@bookAuthor,@bookCoverUrl,@bookDate)";
+
+        DL.updateDB(ds,delcmd, updcmd, insertcmd);
+        Label1.Text = "更新完成";
+    }
 }
